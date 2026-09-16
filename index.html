@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Georg Rieger — ファゴット用シェーパー寸法比較</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f1ec; --bg-2:#faf8f4; --ink:#1a1916; --ink-2:#5c5850; --ink-3:#9a948a;
+  --line:#dcd6cc; --line-2:#c4bcae; --grid:#e6e1d8; --grid-m:#d2cbbf; --hover:#ede9e2; --accent:#9a7f45;
+  --c1:#3a5f9c; --c2:#b8652a; --c3:#2f7f74; --c4:#6f4fa6; --c5:#a8393e; --c6:#8b6d1e; --c7:#2d7f95; --c8:#a63a72;
+}
+:root[data-theme="dark"], :root:not([data-theme="light"]){
+  --bg:#121212; --bg-2:#171716; --ink:#ece7df; --ink-2:#a9a398; --ink-3:#66625a;
+  --line:#26251f; --line-2:#3a382f; --grid:#1d1d1a; --grid-m:#2b2a24; --hover:#1c1c19; --accent:#b89b5e;
+  --c1:#8fb1e6; --c2:#e6a172; --c3:#7fcabb; --c4:#bfa7ea; --c5:#e28a8a; --c6:#d8c27a; --c7:#7fc8dc; --c8:#e79bc3;
+}
+@media (prefers-color-scheme:light){ :root:not([data-theme="dark"]){
+  --bg:#f4f1ec; --bg-2:#faf8f4; --ink:#1a1916; --ink-2:#5c5850; --ink-3:#9a948a;
+  --line:#dcd6cc; --line-2:#c4bcae; --grid:#e6e1d8; --grid-m:#d2cbbf; --hover:#ede9e2; --accent:#9a7f45;
+  --c1:#3a5f9c; --c2:#b8652a; --c3:#2f7f74; --c4:#6f4fa6; --c5:#a8393e; --c6:#8b6d1e; --c7:#2d7f95; --c8:#a63a72;
+}}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Manrope,"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;font-weight:300;font-size:13.5px;line-height:1.7;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+button,input{font:inherit;color:inherit;background:none;border:0;padding:0}
+button{cursor:pointer}
+.serif{font-family:"Cormorant Garamond",Georgia,"Hiragino Mincho ProN","Yu Mincho",serif}
+.wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+@media (max-width:640px){.wrap{padding:0 20px}}
+
+/* header */
+.hd{padding:56px 0 36px;display:flex;align-items:flex-end;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line)}
+.hd h1{margin:0;font-family:"Cormorant Garamond",serif;font-weight:300;font-size:46px;line-height:1.05;letter-spacing:.01em}
+.hd h1 small{display:block;font-family:Manrope,"Hiragino Sans",sans-serif;font-weight:300;font-size:13px;letter-spacing:.14em;color:var(--ink-2);margin-top:14px}
+.hd .meta{font-size:11.5px;letter-spacing:.08em;color:var(--ink-3);text-align:right;line-height:1.9}
+.hd .meta button{letter-spacing:.08em;color:var(--ink-3);padding-bottom:1px;border-bottom:1px solid transparent}
+.hd .meta button.on{color:var(--ink);border-bottom-color:var(--accent)}
+.hd .meta button+button{margin-left:14px}
+@media (max-width:640px){.hd{padding:36px 0 24px;flex-direction:column;align-items:flex-start}.hd h1{font-size:34px}.hd .meta{text-align:left}}
+
+/* selector */
+.pick{padding:30px 0 26px;border-bottom:1px solid var(--line)}
+.pick .cap{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px;font-size:11.5px;letter-spacing:.12em;color:var(--ink-3)}
+.pick .cap button{letter-spacing:.12em;color:var(--ink-3)}
+.pick .cap button:hover{color:var(--ink)}
+.nums{display:flex;flex-wrap:wrap;gap:8px 6px}
+.n{font-size:13.5px;font-weight:500;line-height:1;min-width:46px;height:40px;padding:0 12px;border:1px solid var(--line);border-radius:999px;display:inline-flex;align-items:center;justify-content:center;color:var(--ink-2);transition:border-color .15s,color .15s}
+.n:hover{border-color:var(--ink-2);color:var(--ink)}
+.n.on{color:var(--bg);border-color:transparent}
+.n.na{opacity:.35;cursor:default}
+.n.na:hover{border-color:var(--line);color:var(--ink-2)}
+.n.word{font-size:12.5px}
+
+/* board */
+.board{padding:28px 0 8px}
+.ctl{display:flex;gap:34px;flex-wrap:wrap;font-size:11.5px;letter-spacing:.1em;color:var(--ink-3);margin-bottom:10px}
+.ctl span{display:inline-flex;gap:14px;align-items:baseline}
+.ctl b{font-weight:400;margin-right:4px}
+.ctl button{letter-spacing:.1em;color:var(--ink-3);padding-bottom:2px;border-bottom:1px solid transparent}
+.ctl button:hover{color:var(--ink)}
+.ctl button.on{color:var(--ink);border-bottom-color:var(--accent)}
+.draw{overflow-x:auto;padding:8px 0}
+svg.v{display:block;margin:0 auto;height:660px;max-width:100%}
+svg.v text{font-family:Manrope,sans-serif;fill:var(--ink-3);font-size:2px;font-weight:400}
+svg.v .g{stroke:var(--grid);stroke-width:.08}
+svg.v .gm{stroke:var(--grid-m);stroke-width:.1}
+svg.v .ax{stroke:var(--grid-m);stroke-width:.14;stroke-dasharray:.8 .7}
+svg.v path.o{fill:none;stroke-width:.36;stroke-linejoin:round;stroke-linecap:round}
+svg.v path.o.dim{opacity:.3}
+svg.v path.f{stroke:none;opacity:.06}
+svg.v path.hit{fill:transparent;stroke:transparent;stroke-width:3;cursor:pointer}
+svg.v .lbl{font-family:Manrope,sans-serif;font-size:3px;font-weight:500;fill:var(--ink);cursor:pointer}
+svg.v .lbl.dim{fill:var(--ink-3)}
+svg.v .dl{stroke:var(--ink-2);stroke-width:.1;fill:none}
+svg.v .ext{stroke:var(--ink-3);stroke-width:.07;fill:none}
+svg.v .dt{font-family:Manrope,sans-serif;font-size:2.5px;fill:var(--ink);font-weight:500;letter-spacing:.02em}
+svg.v .empty{font-size:3px;fill:var(--ink-3)}
+.legend{display:flex;gap:26px;flex-wrap:wrap;padding:6px 0 14px;font-size:12px;color:var(--ink-2)}
+.legend button{display:inline-flex;align-items:center;gap:9px;color:var(--ink-2);font-size:13px;font-weight:500}
+.legend button i{width:18px;height:1.5px;background:currentColor;display:inline-block}
+.legend button b{font-weight:500;color:var(--ink)}
+.legend button.act b{border-bottom:1px solid var(--accent)}
+.legend button em{font-style:normal;font-size:11.5px;color:var(--ink-3);font-weight:400}
+
+/* compare */
+.cmp{padding:34px 0 10px;border-top:1px solid var(--line)}
+.cap2{font-size:11.5px;letter-spacing:.12em;color:var(--ink-3);margin-bottom:18px}
+.tw{overflow-x:auto}
+table{border-collapse:collapse}
+.cmp th,.cmp td{padding:12px 28px 12px 0;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line);vertical-align:baseline}
+.cmp th:first-child,.cmp td:first-child{text-align:left;color:var(--ink-2);font-size:12.5px;padding-right:44px;font-weight:300}
+.cmp thead th{font-family:Manrope,sans-serif;font-size:16px;font-weight:500;border-bottom:1px solid var(--line-2);padding-bottom:14px}
+.cmp thead th i{display:inline-block;width:14px;height:1.5px;margin-right:12px;background:currentColor;vertical-align:middle}
+.cmp thead th em{font-size:13px;color:var(--ink-3);margin-left:10px}
+.cmp tbody td{font-family:Manrope,sans-serif;font-size:16px;font-weight:500}
+.cmp tbody td:first-child{font-family:Manrope,sans-serif}
+.cmp td .d{display:block;font-family:Manrope,sans-serif;font-size:11px;color:var(--ink-3);line-height:1.3;letter-spacing:.03em}
+.cmp td .d.p{color:var(--c2)} .cmp td .d.n{color:var(--c1)}
+.cmp td.na{color:var(--ink-3)}
+.cmp .empty{font-size:13px;color:var(--ink-3);margin:0}
+details{margin-top:30px}
+summary{cursor:pointer;font-size:11.5px;letter-spacing:.12em;color:var(--ink-3);list-style:none;display:inline-flex;align-items:center;gap:10px}
+summary::before{content:"";width:5px;height:5px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(-45deg);transition:transform .15s}
+details[open] summary::before{transform:rotate(45deg)}
+summary:hover{color:var(--ink)}
+.all{margin-top:18px;overflow-x:auto}
+.all table{width:100%}
+.all th,.all td{padding:8px 14px 8px 0;text-align:right;white-space:nowrap;border-bottom:1px solid var(--line);font-size:13.5px;font-weight:500}
+.all th:first-child,.all td:first-child{text-align:left}
+.all thead th{color:var(--ink-3);font-weight:400;cursor:pointer;user-select:none;border-bottom:1px solid var(--line-2);font-size:11.5px;letter-spacing:.06em}
+.all thead th.s{color:var(--ink)} .all thead th.s::after{content:" ▴";font-size:9px} .all thead th.s.d::after{content:" ▾"}
+.all tbody tr{cursor:pointer} .all tbody tr:hover{background:var(--hover)} .all tbody tr.on td:first-child{color:var(--accent)}
+.all td.na{color:var(--ink-3)}
+.ft{padding:34px 0 60px;color:var(--ink-3);font-size:11.5px;line-height:1.9;border-top:1px solid var(--line);margin-top:34px;max-width:78ch}
+:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+@media (max-width:640px){svg.v{height:470px}.cmp th,.cmp td{padding-right:18px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="hd">
+  <h1>Georg Rieger<small>ファゴット用シェーパー寸法比較</small></h1>
+  <div class="meta">Rieger 社公表値 · 44 型 · mm<br><span id="theme"><button data-t="dark" class="on">Dark</button><button data-t="light">Light</button></span></div>
+</header>
+
+<section class="pick">
+  <div class="cap"><span>型番を選ぶ</span><button id="clear">選択をすべて解除</button></div>
+  <div class="nums" id="nums"></div>
+</section>
+
+<section class="board">
+  <div class="ctl">
+    <span><b>配置</b><button class="on" data-g="mode" data-v="side">並べる</button><button data-g="mode" data-v="over">重ねる</button></span>
+    <span><b>寸法線</b><button class="on" data-g="dim" data-v="one">選んだ 1 型</button><button data-g="dim" data-v="none">なし</button></span>
+    <span><b>方眼</b><button class="on" data-g="grid" data-v="on">1 mm</button><button data-g="grid" data-v="off">なし</button></span>
+  </div>
+  <div class="draw"><svg class="v" id="svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="シェーパー形状"></svg></div>
+  <div class="legend" id="legend"></div>
+</section>
+
+<section class="cmp">
+  <div class="cap2">選択中の型の比較 — 最初に選んだ型を基準に差を併記</div>
+  <div class="tw" id="cmp"></div>
+  <details>
+    <summary>全 44 型の一覧を開く</summary>
+    <div class="all"><table id="all"><thead><tr>
+      <th data-k="id">型</th><th data-k="w">先端幅</th><th data-k="bl">ブレード長</th><th data-k="th">スロート幅</th><th data-k="tw">チューブ幅</th><th data-k="te">チューブ端幅</th><th data-k="trp">チューブ基準点</th><th data-k="tl">全長</th><th data-k="ratio">先端/スロート</th>
+    </tr></thead><tbody></tbody></table></div>
+  </details>
+</section>
+
+<footer class="ft">
+  寸法定義は Rieger の図面に従う。全長は先端からチューブ端まで、チューブ幅は先端から 60 mm（チューブ基準点）の位置、スロート幅はブレード長位置の幅。公表されているのはこの 4 点の幅と長さのみで、点の間の輪郭は補間であり実物の曲線ではない。
+  36 / H1 / H2 は先端幅のみ公表のため描画対象外、11 はチューブ端幅未公表（チューブ幅で代用）。31 はスロート幅がチューブ幅を上回り他型と傾向が逆だが原典どおり転記。
+</footer>
+</div>
+
+<script>
+const RAW=`1	15.00	72.00	60.00	34.30	8.80	9.90	10.70
+10	14.60	72.00	60.00	33.50	8.50	10.10	10.65
+11	15.40	72.00	60.00	43.50	8.65	9.65	-
+12	15.00	78.00	60.00	31.85	9.30	11.10	11.70
+13	15.52	72.00	60.00	44.60	8.70	9.20	10.25
+14	14.70	72.00	60.00	42.40	8.35	9.55	10.50
+15	16.00	72.00	60.00	39.10	9.10	10.00	10.30
+16	15.10	72.00	60.00	40.10	9.10	9.70	10.50
+17	16.10	72.00	60.00	38.90	9.10	10.00	10.35
+18	15.00	72.00	60.00	43.15	8.85	9.45	9.70
+19	15.75	72.00	60.00	34.75	8.90	10.20	11.00
+1a	15.50	72.00	60.00	37.90	8.90	9.90	10.90
+2	16.00	72.00	59.80	39.40	9.10	9.90	10.70
+20	16.00	72.00	60.00	38.30	9.00	10.00	10.50
+21	18.20	80.00	60.00	40.50	10.05	11.20	12.80
+22	15.20	72.00	60.00	37.30	9.10	10.10	11.20
+23	16.00	72.00	60.00	43.50	9.70	10.00	10.70
+24	15.89	72.00	60.00	34.10	9.10	11.00	11.95
+25	18.00	78.00	60.00	49.40	9.70	10.00	11.10
+26	15.00	72.00	60.00	35.90	8.20	10.10	11.00
+27	15.75	72.00	60.00	40.00	9.00	10.40	11.00
+28	16.00	72.00	60.00	35.90	8.20	10.55	11.00
+29	15.50	72.00	60.00	45.00	9.00	9.60	10.20
+2a	16.25	72.00	60.00	38.00	9.20	10.00	10.60
+3	16.50	72.00	60.00	39.20	9.20	9.85	10.55
+30	15.50	72.00	60.00	31.00	8.50	10.20	10.80
+31	12.50	72.00	60.00	30.00	9.70	6.60	9.50
+32	15.70	72.00	60.00	45.60	8.90	9.60	10.30
+33	15.00	72.00	60.00	37.50	8.50	9.00	9.00
+34	14.90	78.00	60.00	42.30	9.30	10.00	11.00
+35	16.00	72.00	60.00	41.00	9.10	10.00	10.80
+36	15.45
+37	16.00	72.00	60.00	43.70	8.50	9.50	10.70
+4	15.20	72.00	60.00	38.50	8.80	9.80	10.30
+5	15.65	72.00	60.00	37.10	8.90	9.90	10.90
+6	15.50	72.00	60.00	42.00	9.25	10.00	10.80
+7	16.80	72.00	60.00	39.30	9.20	9.90	10.45
+8	14.40	72.00	60.00	42.40	8.30	10.00	11.20
+9	14.75	72.00	60.00	39.90	8.30	9.85	10.70
+KOR	15.45	72.00	60.00	44.90	8.10	9.10	10.30
+Thunemann	15.60	72.00	60.00	35.10	9.20	9.40	9.40
+H1 Hermann	15.22
+H2 Hermann	15.75`;
+const KEYS=['w','tl','trp','bl','th','tw','te'];
+const LBL={w:'先端幅',bl:'ブレード長',th:'スロート幅',trp:'チューブ基準点',tw:'チューブ幅',te:'チューブ端幅',tl:'全長',ratio:'先端／スロート比'};
+const ORDER=['w','bl','th','tw','te','trp','tl','ratio'];
+const num=s=>{const v=parseFloat(s);return Number.isFinite(v)?v:null};
+const DATA=RAW.split('\n').map(l=>{const c=l.split('\t');const o={id:c[0]};KEYS.forEach((k,i)=>o[k]=num(c[i+1]));o.ratio=(o.w&&o.th)?o.w/o.th:null;o.drawable=[o.w,o.bl,o.th,o.trp,o.tw,o.tl].every(v=>v!=null);return o});
+const natKey=id=>{const m=id.match(/^(\d+)([a-z]?)/i);return m?[+m[1],m[2]||'']:[1e9,id]};
+DATA.sort((a,b)=>{const x=natKey(a.id),y=natKey(b.id);return x[0]-y[0]||x[1].localeCompare(y[1])||a.id.localeCompare(b.id)});
+const COLORS=['--c1','--c2','--c3','--c4','--c5','--c6','--c7','--c8'];
+let sel=[],focus=null,mode='side',dimMode='one',gridOn=true,hover=null,sortK='id',sortDesc=false;
+const $=s=>document.querySelector(s);
+const colorOf=id=>{const i=sel.indexOf(id);return i<0?null:`var(${COLORS[i%COLORS.length]})`};
+const fmt=v=>v==null?'—':(Math.round(v*100)/100).toString();
+const byId=id=>DATA.find(r=>r.id===id);
+
+const root=document.documentElement;
+try{const t=localStorage.getItem('rieger-theme');if(t)root.dataset.theme=t}catch(e){}
+const syncTheme=()=>[...$('#theme').children].forEach(b=>b.classList.toggle('on',b.dataset.t===root.dataset.theme));
+$('#theme').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;root.dataset.theme=b.dataset.t;try{localStorage.setItem('rieger-theme',b.dataset.t)}catch(e){}syncTheme()});
+syncTheme();
+
+function shapePath(d,cx,oy){
+  const hw=d.w/2,ht=d.th/2,htw=d.tw/2,hte=(d.te??d.tw)/2,L=d.tl,X=v=>cx+v,Y=v=>oy+v;
+  return `M${X(-hw)} ${Y(0)} L${X(hw)} ${Y(0)} C${X(hw)} ${Y(d.bl*.4)} ${X(ht)} ${Y(d.bl*.9)} ${X(ht)} ${Y(d.bl)} L${X(htw)} ${Y(d.trp)} L${X(hte)} ${Y(L)} L${X(-hte)} ${Y(L)} L${X(-htw)} ${Y(d.trp)} L${X(-ht)} ${Y(d.bl)} C${X(-ht)} ${Y(d.bl*.9)} ${X(-hw)} ${Y(d.bl*.4)} ${X(-hw)} ${Y(0)} Z`;
+}
+function dims(d,cx,oy,leftX,rightX){
+  const Y=v=>oy+v,mk='marker-start="url(#a)" marker-end="url(#a)"';let s='';
+  s+=`<line class="ext" x1="${cx-d.w/2}" y1="${Y(-.5)}" x2="${cx-d.w/2}" y2="${Y(-5.5)}"/><line class="ext" x1="${cx+d.w/2}" y1="${Y(-.5)}" x2="${cx+d.w/2}" y2="${Y(-5.5)}"/>`;
+  s+=`<line class="dl" x1="${cx-d.w/2}" y1="${Y(-4)}" x2="${cx+d.w/2}" y2="${Y(-4)}" ${mk}/><text class="dt" x="${cx}" y="${Y(-5)}" text-anchor="middle">${fmt(d.w)}</text>`;
+  const rw=(y,w)=>`<line class="ext" x1="${cx+w/2+.5}" y1="${y}" x2="${rightX-.6}" y2="${y}"/><line class="dl" x1="${cx-w/2}" y1="${y}" x2="${cx+w/2}" y2="${y}" ${mk}/><text class="dt" x="${rightX}" y="${y+.9}">${fmt(w)}</text>`;
+  s+=rw(Y(d.bl),d.th)+rw(Y(d.trp),d.tw)+(d.te!=null?rw(Y(d.tl),d.te):'');
+  const vz=(x,len)=>`<line class="ext" x1="${x-.8}" y1="${Y(len)}" x2="${cx-d.tw/2-.5}" y2="${Y(len)}"/><line class="dl" x1="${x}" y1="${Y(0)}" x2="${x}" y2="${Y(len)}" ${mk}/><text class="dt" x="${x-.8}" y="${Y(len/2)+.9}" text-anchor="end">${fmt(len)}</text>`;
+  s+=`<line class="ext" x1="${leftX-.8}" y1="${Y(0)}" x2="${cx-d.w/2-.5}" y2="${Y(0)}"/>`+vz(leftX,d.tl)+vz(leftX+4,d.trp)+vz(leftX+8,d.bl);
+  return s;
+}
+function grid(x0,x1,y0,h){
+  let s='';
+  for(let mm=0;mm<=h;mm++){const y=y0+mm,m=mm%5===0;if(gridOn||m)s+=`<line class="${m?'gm':'g'}" x1="${x0}" y1="${y}" x2="${x1}" y2="${y}"/>`;if(mm%10===0)s+=`<text x="${x0-1.4}" y="${y+.7}" text-anchor="end">${mm}</text>`}
+  if(gridOn)for(let x=Math.ceil(x0);x<=x1;x++)s+=`<line class="${(x-x0)%5===0?'gm':'g'}" x1="${x}" y1="${y0}" x2="${x}" y2="${y0+h}"/>`;
+  return s;
+}
+const activeId=()=>dimMode==='none'?null:(hover&&sel.includes(hover)?hover:(focus&&sel.includes(focus)?focus:sel[0]));
+function render(){
+  const svg=$('#svg'),items=sel.map(byId).filter(d=>d.drawable),active=activeId();
+  const OY=9,H=100,GH=85;
+  let out=`<defs><marker id="a" viewBox="0 0 6 6" refX="5.8" refY="3" markerWidth="2.2" markerHeight="2.2" orient="auto-start-reverse" markerUnits="userSpaceOnUse"><path d="M0 1 L6 3 L0 5 Z" fill="var(--ink-2)"/></marker></defs>`,W;
+  const hit=(d,cx)=>`<path class="hit" data-id="${d.id}" d="${shapePath(d,cx,OY)}"><title>${d.id}</title></path>`;
+  if(!items.length){W=80;out+=`<text class="empty" x="40" y="48" text-anchor="middle">上の型番を選ぶと形状が描かれます</text>`}
+  else if(mode==='over'){
+    const cx=40;W=78;
+    out+=grid(cx-14,cx+14,OY,GH)+`<line class="ax" x1="${cx}" y1="${OY}" x2="${cx}" y2="${OY+GH}"/>`;
+    items.forEach(d=>out+=`<path class="o${active&&d.id!==active?' dim':''}" stroke="${colorOf(d.id)}" d="${shapePath(d,cx,OY)}"/>`);
+    items.forEach(d=>out+=hit(d,cx));
+    if(active)out+=dims(byId(active),cx,OY,cx-30,cx+16.5);
+  } else {
+    const COL=26,PAD=18,LX=22,RX=14;
+    let x=PAD;const pos=items.map(d=>{const on=d.id===active;const cx=x+(on?LX:0)+COL/2;x+=COL+(on?LX+RX:0);return cx});
+    W=x+4;out+=grid(PAD-1,W-3,OY,GH);
+    items.forEach((d,i)=>{const cx=pos[i],c=colorOf(d.id),on=d.id===active;
+      out+=`<path class="f" fill="${c}" d="${shapePath(d,cx,OY)}"/><path class="o${active&&!on?' dim':''}" stroke="${c}" d="${shapePath(d,cx,OY)}"/>`+hit(d,cx);
+      out+=`<text class="lbl${active&&!on?' dim':''}" data-id="${d.id}" x="${cx}" y="${OY+GH+6}" text-anchor="middle">${d.id}</text>`;
+      if(on)out+=dims(d,cx,OY,cx-COL/2-LX+3,cx+COL/2+2);});
+  }
+  svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.innerHTML=out;
+  $('#legend').innerHTML=sel.map((id,i)=>{const d=byId(id);return `<button data-id="${id}" class="${id===active?'act':''}" style="color:${colorOf(id)}"><i></i><b>${id}</b>${i===0?'<em>基準</em>':''}${d.drawable?'':'<em>描画対象外</em>'}</button>`}).join('');
+  renderNums();renderCmp();renderAll();
+}
+const setFocus=id=>{focus=id;hover=null;render()};
+$('#svg').addEventListener('mouseover',e=>{const id=e.target.dataset?.id;if(id&&id!==hover){hover=id;render()}});
+$('#svg').addEventListener('mouseleave',()=>{if(hover){hover=null;render()}});
+$('#svg').addEventListener('click',e=>{const id=e.target.dataset?.id;if(id)setFocus(id)});
+$('#legend').addEventListener('click',e=>{const b=e.target.closest('button');if(b)setFocus(b.dataset.id)});
+
+function renderNums(){
+  $('#nums').innerHTML=DATA.map(d=>{const on=sel.includes(d.id),word=/[A-Za-z]{2,}/.test(d.id);
+    return `<button class="n${on?' on':''}${d.drawable?'':' na'}${word?' word':''}" data-id="${d.id}" ${on?`style="background:${colorOf(d.id)}"`:''} title="${d.drawable?'先端幅 '+d.w.toFixed(2)+' mm':'先端幅のみ公表のため描画対象外'}">${d.id}</button>`}).join('');
+}
+function toggle(id){if(!byId(id).drawable)return;const i=sel.indexOf(id);i<0?sel.push(id):sel.splice(i,1);if(focus===id)focus=null;render()}
+$('#nums').addEventListener('click',e=>{const b=e.target.closest('.n');if(b)toggle(b.dataset.id)});
+$('#clear').addEventListener('click',()=>{sel=[];focus=null;render()});
+$('.ctl').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;const g=b.dataset.g,v=b.dataset.v;
+  if(g==='mode')mode=v;else if(g==='dim')dimMode=v;else gridOn=v==='on';
+  document.querySelectorAll(`.ctl button[data-g="${g}"]`).forEach(x=>x.classList.toggle('on',x===b));render()});
+
+function renderCmp(){
+  const el=$('#cmp');if(!sel.length){el.innerHTML='<p class="empty">型を選ぶと、ここに寸法が並びます。</p>';return}
+  const base=byId(sel[0]);
+  let h='<table><thead><tr><th></th>'+sel.map((id,i)=>`<th style="color:${colorOf(id)}"><i></i><span style="color:var(--ink)">${id}</span>${i===0?'<em>基準</em>':''}</th>`).join('')+'</tr></thead><tbody>';
+  ORDER.forEach(k=>{h+=`<tr><td>${LBL[k]}</td>`+sel.map((id,i)=>{const d=byId(id),v=d[k];if(v==null)return'<td class="na">—</td>';
+    let s=k==='ratio'?v.toFixed(3):v.toFixed(2);
+    if(i>0&&base[k]!=null){const df=v-base[k];s+=`<span class="d ${df>.0005?'p':df<-.0005?'n':''}">${df>=0?'+':''}${k==='ratio'?df.toFixed(3):df.toFixed(2)}</span>`}
+    return`<td>${s}</td>`}).join('')+'</tr>'});
+  el.innerHTML=h+'</tbody></table>';
+}
+function renderAll(){
+  const rows=[...DATA].sort((a,b)=>{if(sortK==='id')return 0;const x=a[sortK],y=b[sortK];if(x==null&&y==null)return 0;if(x==null)return 1;if(y==null)return-1;return sortDesc?y-x:x-y});
+  $('#all tbody').innerHTML=rows.map(d=>`<tr data-id="${d.id}" class="${sel.includes(d.id)?'on':''}"><td>${d.id}</td>${ORDER.map(k=>d[k]==null?'<td class="na">—</td>':`<td>${k==='ratio'?d[k].toFixed(3):d[k].toFixed(2)}</td>`).join('')}</tr>`).join('');
+  document.querySelectorAll('#all thead th').forEach(th=>{th.classList.toggle('s',th.dataset.k===sortK);th.classList.toggle('d',th.dataset.k===sortK&&sortDesc)});
+}
+$('#all tbody').addEventListener('click',e=>{const tr=e.target.closest('tr');if(tr)toggle(tr.dataset.id)});
+$('#all thead').addEventListener('click',e=>{const th=e.target.closest('th');if(!th)return;const k=th.dataset.k;sortK===k?sortDesc=!sortDesc:(sortK=k,sortDesc=false);renderAll()});
+render();
+</script>
+</body>
+</html>
